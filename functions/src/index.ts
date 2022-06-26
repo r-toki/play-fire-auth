@@ -2,11 +2,10 @@ import * as e from 'cors';
 import * as functions from 'firebase-functions';
 
 const cors = e({ origin: true });
-const onRequest = (
-  fn: (req: functions.https.Request, res: functions.Response) => (err?: any) => any
-) => functions.https.onRequest((req, res) => cors(req, res, fn(req, res)));
+const onRequest = (fn: (req: functions.https.Request, res: functions.Response, err?: any) => any) =>
+  functions.https.onRequest((req, res) => cors(req, res, (err) => fn(req, res, err)));
 
-export const fn1 = onRequest((_, res) => () => {
+export const fn1 = onRequest((_, res) => {
   res.send({ data: 'onRequest' });
 });
 
