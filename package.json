@@ -6,7 +6,9 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "emulators:start": "firebase emulators:start"
+    "emulators:start": "firebase emulators:start",
+    "predeploy": "yarn build",
+    "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
     "firebase": "^9.8.4",
