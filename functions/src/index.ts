@@ -1,9 +1,15 @@
-import * as functions from "firebase-functions";
+import * as e from 'cors';
+import * as functions from 'firebase-functions';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-export const helloWorld = functions.https.onRequest((request, response) => {
-  functions.logger.info("Hello logs!", {structuredData: true});
-  response.send("Hello from Firebase!");
+const cors = e({ origin: true });
+const onRequest = (
+  fn: (req: functions.https.Request, res: functions.Response) => (err?: any) => any
+) => functions.https.onRequest((req, res) => cors(req, res, fn(req, res)));
+
+export const fn1 = onRequest((_, res) => () => {
+  res.send({ data: 'onRequest' });
+});
+
+export const fn2 = functions.https.onCall(() => {
+  return 'onCall';
 });
