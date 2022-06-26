@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+import { getApp, initializeApp } from 'firebase/app';
 import { connectAuthEmulator, getAuth } from 'firebase/auth';
 import { connectFunctionsEmulator, getFunctions } from 'firebase/functions';
 
@@ -16,5 +16,5 @@ initializeApp(config);
 
 if (!import.meta.env.PROD) {
   connectAuthEmulator(getAuth(), 'http://localhost:9099', { disableWarnings: true });
-  connectFunctionsEmulator(getFunctions(), 'localhost', 5001);
+  connectFunctionsEmulator(getFunctions(getApp(), 'asia-northeast1'), 'localhost', 5001);
 }

@@ -1,9 +1,7 @@
 import * as e from 'cors';
 import * as functions from 'firebase-functions';
 
-const functionsAtTokyo = functions.region(
-  process.env.NODE_ENV === 'production' ? 'asia-northeast1' : 'us-central1'
-);
+const functionsAtTokyo = functions.region('asia-northeast1');
 const cors = e({ origin: true });
 const onRequest = (fn: (req: functions.https.Request, res: functions.Response, err?: any) => any) =>
   functionsAtTokyo.https.onRequest((req, res) => cors(req, res, (err) => fn(req, res, err)));
