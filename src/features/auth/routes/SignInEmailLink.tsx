@@ -1,9 +1,11 @@
 import { Button, Center, Divider, Heading, Stack } from '@chakra-ui/react';
 import { FC } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { z } from 'zod';
 
 import { Form, InputField, Layout } from '@/components';
 import { SignInWithEmailLink } from '@/fire/auth';
+import { useAppToast } from '@/hooks';
 
 const schema = z.object({ email: z.string().min(1, 'Required') });
 
@@ -12,8 +14,17 @@ type RegisterValues = {
 };
 
 export const SignInEmailLink: FC = () => {
+  const navigate = useNavigate();
+  const toast = useAppToast();
+
   const onSubmit = async ({ email }: RegisterValues) => {
-    SignInWithEmailLink.sendEmail(email);
+    try {
+      await SignInWithEmailLink.sendEmail(email);
+      toast({ status: 'success', title: 'Please check email.' });
+      navigate('/');
+    } catch {
+      toast({ status: 'error', title: 'Error.' });
+    }
   };
 
   return (

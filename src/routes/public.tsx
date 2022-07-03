@@ -1,7 +1,3 @@
-import React from 'react';
-
-const AuthRoutes = React.lazy(() =>
-  import('@/features/auth').then((m) => ({ default: m.AuthRoutes }))
-);
+import { AuthRoutes } from '@/features/auth';
 
 export const publicRoutes = [{ path: 'auth/*', element: <AuthRoutes /> }];
