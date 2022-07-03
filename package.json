@@ -11,9 +11,17 @@
     "deploy": "firebase deploy --only hosting"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.2.1",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
+    "@hookform/resolvers": "^2.9.3",
     "firebase": "^9.8.4",
+    "framer-motion": "^6",
     "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react-dom": "^18.0.0",
+    "react-hook-form": "^7.33.1",
+    "react-router-dom": "6",
+    "zod": "^3.17.3"
   },
   "devDependencies": {
     "@types/node": "^18.0.0",

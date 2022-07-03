@@ -1,11 +1,12 @@
-import { FC, useEffect } from 'react';
+import { FC } from 'react';
 
-import { fn1, fn2 } from './fire/functions';
+import { AppProvider } from './providers';
+import { AppRoutes } from './routes';
 
 export const App: FC = () => {
-  useEffect(() => {
-    fn1().then(console.log);
-    fn2().then(console.log);
-  }, []);
-  return <div>This is App Component</div>;
+  return (
+    <AppProvider>
+      <AppRoutes />
+    </AppProvider>
+  );
 };
