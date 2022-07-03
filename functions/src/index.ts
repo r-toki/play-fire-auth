@@ -8,9 +8,9 @@ const onRequest = (fn: (req: functions.https.Request, res: functions.Response, e
 const onCall = functionsAtTokyo.https.onCall;
 
 export const fn1 = onRequest((_, res) => {
-  res.send({ data: 'onRequest' });
+  res.send({ data: 'Hi, onRequest' });
 });
 
 export const fn2 = onCall(() => {
-  return 'onCall';
+  return 'Hi, onCall';
 });
